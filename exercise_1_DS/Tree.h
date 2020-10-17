@@ -136,7 +136,8 @@ public:
 
 	void print()
 	{
-		print(root, 0);
+		if (root)
+			print(root, 0);
 	}
 	void printMaslul(string discussion)
 	{
