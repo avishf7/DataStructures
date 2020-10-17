@@ -2,7 +2,7 @@
 
 #include "Tree.h"
 
-class treelist
+class treeList
 {
 private:
 
@@ -10,7 +10,7 @@ private:
 
 public:
 
-	treelist() {};  // constructor
+	treeList() {};  // constructor
 
 	//clean the list
 	void clear()
@@ -19,7 +19,7 @@ public:
 			listOfTrees.erase(it);
 	}
 
-	~treelist() //destructor
+	~treeList() //destructor
 	{
 		clear();
 	}
@@ -37,7 +37,7 @@ public:
 	// and deletes it from the list of trees 
 	void remove(Tree tree)
 	{
-		listOfTrees.remove(tree);
+		listOfTrees.remove_if([&](const Tree t) { return t.getRootString() == tree.getRootString(); });;
 	}
 
 	// Gets a string and if it appears in the tree from the list of trees,
@@ -95,6 +95,16 @@ public:
 			}
 		}
 		return false;
+	}
+
+	// Gets 2 strings,
+	// looking for a tree root that matches the first string,
+	// and prints the sub-tree from that second string
+	void printSubTree(string title, string val)
+	{
+		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+			if ((*it).getRootString() == title)
+				(*it).printSubTree(val);
 	}
 
 	// print all the trees from the tree list

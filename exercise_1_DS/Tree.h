@@ -76,7 +76,7 @@ private:
 public:
 	Tree() { root = NULL; }
 
-	string getRootString() { return root->content; } //getter
+	string getRootString() const { return root->content; }  //getter
 
 	void setroot(string discussion)
 	{
