@@ -20,9 +20,10 @@ public:
 		clear();
 	}
 
-	void add()
+	void addNewTree(string discussion)
 	{
 		Tree tree;
+		tree.setroot(discussion);
 		listOfTrees.push_back(tree);
 	}
 
@@ -42,6 +43,28 @@ public:
 				}
 		}
 	}
+	bool addResponse(string title, string father, string son)
+	{
+		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+		{
+			if ((*it).getRootString() == title)
+				return (*it).add(father, son);
+		}
+
+		return false;
+	}
+
+
+	bool delResponse(string title, string son)
+	{
+		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+		{
+			if ((*it).getRootString() == title)
+				return (*it).remove(son);
+		}
+
+		return false;
+	}
 
 	bool printTree(string s)
 	{
@@ -54,6 +77,12 @@ public:
 			}
 		}
 		return false;
+	}
+
+	void printAllTrees()
+	{
+		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+			(*it).print();
 	}
 
 	bool printPartOfTree(string tree, string discussion)
@@ -70,4 +99,5 @@ public:
 		}
 		return false;
 	}
+
 };
