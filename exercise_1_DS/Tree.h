@@ -62,9 +62,6 @@ private:
 
 	void printMaslul(string discussion, Node* current, int space)
 	{
-		for (int i = 0; i < space * 3; i++)
-			cout << " ";
-
 		cout << current->content << endl;
 
 		for (auto it = current->responses.begin(); it != current->responses.end(); it++)
@@ -72,6 +69,7 @@ private:
 			Node* find = Search(discussion, *it);
 			if (find == NULL)
 				continue;
+			cout << "->";
 			printMaslul(discussion, *it, space + 1);
 		}
 	}
