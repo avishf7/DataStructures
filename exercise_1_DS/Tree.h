@@ -62,7 +62,7 @@ private:
 
 	void printMaslul(string discussion, Node* current, int space)
 	{
-		cout << current->content << endl;
+		cout << current->content;
 
 		for (auto it = current->responses.begin(); it != current->responses.end(); it++)
 		{
