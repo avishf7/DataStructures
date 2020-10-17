@@ -98,26 +98,39 @@ public:
 		return Search(discussion, root);
 	}
 
-	void add(string father, string son)
+	bool add(string father, string son)
 	{
-		Node* newrespones = new Node;
-		newrespones->content = son;
-		Search(father)->responses.push_back(newrespones);
+		Node* fatherP = Search(father);
+
+		if (fatherP)
+		{
+			Node* newrespones = new Node;
+			newrespones->content = son;
+			fatherP->responses.push_back(newrespones);
+		}
+
+		return fatherP;
 	}
 
-	void remove(string discussion)
+	bool remove(string discussion)
 	{
 		if (root->content == discussion)
 		{
 			delete root;
-			root = NULL;
+			return (root = NULL);
+
 		}
 		else
 		{
 			Node* toRemove = Search(discussion);
-			Node* toRemoveFather = seasrchFather(discussion, root);
+			if (toRemove)
+			{
+				Node* toRemoveFather = seasrchFather(discussion, root);
 
-			toRemoveFather->responses.remove(toRemove);
+				toRemoveFather->responses.remove(toRemove);
+			}
+
+			return toRemove;
 		}
 	}
 
