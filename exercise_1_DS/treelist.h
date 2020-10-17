@@ -5,21 +5,27 @@
 class treelist
 {
 private:
-	list<Tree> listOfTrees;
-public:
-	treelist() {};
 
+	list<Tree> listOfTrees;
+
+public:
+
+	treelist() {};  // constructor
+
+	//clean the list
 	void clear()
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 			listOfTrees.erase(it);
 	}
 
-	~treelist()
+	~treelist() //destructor
 	{
 		clear();
 	}
 
+	// Gets a string and adds to the tree list 
+	// a new tree with a root containing that string
 	void addNewTree(string discussion)
 	{
 		Tree tree;
@@ -27,12 +33,16 @@ public:
 		listOfTrees.push_back(tree);
 	}
 
+	// Gets a Tree object 
+	// and deletes it from the list of trees 
 	void remove(Tree tree)
 	{
 		listOfTrees.remove(tree);
 	}
 
-	void searchAndPrint(string tree, string discussion)
+	// Gets a string and if it appears in the tree from the list of trees,
+	// prints the arrival route and the sub-tree from that string
+	void searchAndPrint(string discussion)
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		{
@@ -43,29 +53,37 @@ public:
 				}
 		}
 	}
+
+	// Gets 3 strings,
+    // looking for a tree root that matches the first string,
+    // and inserts the third string to be a son of the vertex 
+	// which matching to the second string in the fit tree
 	bool addResponse(string title, string father, string son)
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		{
 			if ((*it).getRootString() == title)
-				return (*it).add(father, son);
+				return ((*it).add(father, son));
 		}
 
 		return false;
 	}
 
-
+	// Gets 2 strings,
+	// looking for a tree root that matches the first string,
+	// and removes the second string in the fit tree
 	bool delResponse(string title, string son)
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		{
 			if ((*it).getRootString() == title)
-				return (*it).remove(son);
+				return ((*it).remove(son));
 		}
 
 		return false;
 	}
 
+	// Gets string and prints the tree whose root matches the same string
 	bool printTree(string s)
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
@@ -79,12 +97,16 @@ public:
 		return false;
 	}
 
+	// print all the trees from the tree list
 	void printAllTrees()
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 			(*it).print();
 	}
 
+	// Gets two strings 
+	// looking for a tree root that matches the first string,
+	// and prints the arrival route and the sub-tree from the second string in this tree
 	bool printPartOfTree(string tree, string discussion)
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
