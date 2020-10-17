@@ -145,7 +145,8 @@ public:
 	}
 	void printSubTree(string discussion)
 	{
-		print(Search(discussion), 0);
+		if (Node* rootToPrint = Search(discussion))
+			print(rootToPrint, 0);
 	}
 };
 
