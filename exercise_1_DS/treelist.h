@@ -31,6 +31,18 @@ public:
 		listOfTrees.remove(tree);
 	}
 
+	void searchAndPrint(string tree, string discussion)
+	{
+		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+		{
+				if ((*it).Search(discussion))
+				{
+					(*it).printMaslul(discussion);
+					(*it).printSubTree(discussion);
+				}
+		}
+	}
+
 	bool printTree(string s)
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
@@ -44,12 +56,12 @@ public:
 		return false;
 	}
 
-	bool printPartOfTree(string tree, string discussion)//סעיף ט
+	bool printPartOfTree(string tree, string discussion)
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		{
 			if ((*it).getRootString() == tree)
-				if ((*it).Search(discussion))//אם מחרוזת התגובה אינה בעץ-לא יודפס כלום ולא יוחזר טרו
+				if ((*it).Search(discussion))
 				{
 					(*it).printMaslul(discussion);
 					(*it).printSubTree(discussion);
