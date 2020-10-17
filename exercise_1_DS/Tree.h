@@ -78,6 +78,8 @@ private:
 public:
 	Tree() { root = NULL; }
 
+	string getRootString() { return root->content; } //getter
+
 	void setroot(string discussion)
 	{
 		delete root;

@@ -1,23 +1,35 @@
+#pragma once
+
 #include "Tree.h"
 
 class treelist
 {
 private:
-	list<Tree> listoftrees;
+	list<Tree> listOfTrees;
 public:
 	treelist() {};
+
 	void clear()
 	{
-		for (auto it = listoftrees.begin(); it != listoftrees.end(); it++)
-			listoftrees.erase(it);
+		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+			listOfTrees.erase(it);
 	}
+
+	~treelist()
+	{
+		clear();
+	}
+
 	void add()
 	{
 		Tree tree;
-		listoftrees.push_back(tree);
+		listOfTrees.push_back(tree);
 	}
+
 	void remove(Tree tree)
 	{
-		listoftrees.remove(tree);
+		listOfTrees.remove(tree);
 	}
+
+	
 };
