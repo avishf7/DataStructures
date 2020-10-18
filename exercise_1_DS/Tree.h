@@ -63,7 +63,7 @@ private:
 	}
 
 	//Recursive function-Gets a string and prints the route from the root to the node
-	void printMaslul(string discussion, Node* current, int space)
+	void printMaslul(string discussion, Node* current)
 	{
 		cout << current->content;//print the current node
 
@@ -72,7 +72,7 @@ private:
 			if (Search(discussion, *it) != NULL)
 			{
 				cout << "->";
-				printMaslul(discussion, *it, space + 1);
+				printMaslul(discussion, *it);
 				return;
 			}
 		}
@@ -152,7 +152,7 @@ public:
 	void printMaslul(string discussion)
 	{
 		if (Search(discussion))
-			printMaslul(discussion, root, 0);//Calls a recursive function
+			printMaslul(discussion, root);//Calls a recursive function
 	}
 
 	//Gets a string and prints its subtree
