@@ -69,11 +69,12 @@ private:
 
 		for (auto it = current->responses.begin(); it != current->responses.end(); it++)//Find out where the string is and continue printing according to the route
 		{
-			Node* find = Search(discussion, *it);
-			if (find == NULL)
-				continue;
-			cout << "->";
-			printMaslul(discussion, *it, space + 1);
+			if (Search(discussion, *it) != NULL)
+			{
+				cout << "->";
+				printMaslul(discussion, *it, space + 1);
+				return;
+			}
 		}
 	}
 public:
