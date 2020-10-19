@@ -30,7 +30,7 @@ public:
 	{
 		Tree tree;
 		listOfTrees.push_back(tree);
-		(*listOfTrees.begin()).setroot(discussion);	
+		listOfTrees.back().setroot(discussion);	
 	}
 
 	// Gets a Tree object 
@@ -110,8 +110,12 @@ public:
 	// print all the trees from the tree list
 	void printAllTrees()
 	{
-		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+		int i = 1;
+		for (auto it = listOfTrees.begin() ; it != listOfTrees.end(); it++)
+		{
+			cout << "Tree #" << i++ << endl;
 			(*it).print();
+		}
 	}
 
 	// Gets two strings 
