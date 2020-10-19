@@ -91,16 +91,10 @@ public:
 		root->content = discussion;
 	}
 
-	void clear()//free all the memory of the tree
+	~Tree()//dtor
 	{
 		delete root;
 		root = NULL;
-	}
-
-	~Tree()//dtor
-	{
-		cout << "hi\n";
-		clear();
 	}
 
 	//Receives a string and returns a pointer to the node that contains it
