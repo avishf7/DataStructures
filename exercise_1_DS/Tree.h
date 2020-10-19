@@ -81,7 +81,7 @@ public:
 
 	Tree() { root = NULL; }//ctor
 
-	string getRootString() const { return root->content; }  //getter-Returns the root contents
+	string getRootString() const { if (root) return root->content; else return ""; }  //getter-Returns the root contents
 
 	//Puts a new string at the root and delete the old tree
 	void setroot(string discussion)
@@ -91,10 +91,15 @@ public:
 		root->content = discussion;
 	}
 
-	~Tree()//dtor
+	void clear()//free all the memory of the tree
 	{
 		delete root;
 		root = NULL;
+	}
+
+	~Tree()//dtor
+	{
+		clear();
 	}
 
 	//Receives a string and returns a pointer to the node that contains it
@@ -153,6 +158,7 @@ public:
 	{
 		if (Search(discussion))
 			printMaslul(discussion, root);//Calls a recursive function
+		
 	}
 
 	//Gets a string and prints its subtree

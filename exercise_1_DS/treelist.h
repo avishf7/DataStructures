@@ -16,7 +16,7 @@ public:
 	void clear()
 	{
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
-			listOfTrees.erase(it);
+			it->clear();
 	}
 
 	~treeList() //destructor
@@ -49,6 +49,8 @@ public:
 				if ((*it).Search(discussion))
 				{
 					(*it).printMaslul(discussion);
+					if (it->getRootString() != "")
+						cout << endl;
 					(*it).printSubTree(discussion);
 				}
 		}
