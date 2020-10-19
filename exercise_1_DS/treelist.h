@@ -29,8 +29,8 @@ public:
 	void addNewTree(string discussion)
 	{
 		Tree tree;
-		tree.setroot(discussion);
 		listOfTrees.push_back(tree);
+		(*listOfTrees.begin()).setroot(discussion);	
 	}
 
 	// Gets a Tree object 
