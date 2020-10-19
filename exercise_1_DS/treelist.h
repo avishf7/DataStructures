@@ -29,7 +29,7 @@ public:
 	{
 		Tree tree;
 		listOfTrees.push_back(tree);
-		listOfTrees.back().setroot(discussion);	
+		listOfTrees.back().setroot(discussion);
 	}
 
 	// Gets a Tree object 
@@ -41,23 +41,26 @@ public:
 
 	// Gets a string and if it appears in the tree from the list of trees,
 	// prints the arrival route and the sub-tree from that string
-	void searchAndPrint(string discussion)
+	bool searchAndPrint(string discussion)
 	{
+		bool flag = false;
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		{
-				if ((*it).Search(discussion))
-				{
-					(*it).printMaslul(discussion);
-					if (it->getRootString() != "")
-						cout << endl;
-					(*it).printSubTree(discussion);
-				}
+			if (flag = (*it).Search(discussion))
+			{
+				flag = true;
+				(*it).printMaslul(discussion);
+				if (it->getRootString() != "")
+					cout << endl;
+				(*it).printSubTree(discussion);
+			}
 		}
+		return flag;
 	}
 
 	// Gets 3 strings,
-    // looking for a tree root that matches the first string,
-    // and inserts the third string to be a son of the vertex 
+	// looking for a tree root that matches the first string,
+	// and inserts the third string to be a son of the vertex 
 	// which matching to the second string in the fit tree
 	bool addResponse(string title, string father, string son)
 	{
@@ -112,7 +115,7 @@ public:
 	void printAllTrees()
 	{
 		int i = 1;
-		for (auto it = listOfTrees.begin() ; it != listOfTrees.end(); it++)
+		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		{
 			cout << "Tree #" << i++ << endl;
 			(*it).print();

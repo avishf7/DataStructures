@@ -66,16 +66,16 @@ private:
 	void printMaslul(string discussion, Node* current)
 	{
 		cout << current->content;//print the current node
-
-		for (auto it = current->responses.begin(); it != current->responses.end(); it++)//Find out where the string is and continue printing according to the route
-		{
-			if (Search(discussion, *it) != NULL)
+		if (current->content != discussion)
+			for (auto it = current->responses.begin(); it != current->responses.end(); it++)//Find out where the string is and continue printing according to the route
 			{
-				cout << "->";
-				printMaslul(discussion, *it);
-				return;
+				if (Search(discussion, *it) != NULL)
+				{
+					cout << "->";
+					printMaslul(discussion, *it);
+					return;
+				}
 			}
-		}
 	}
 public:
 
@@ -153,7 +153,7 @@ public:
 	{
 		if (Search(discussion))
 			printMaslul(discussion, root);//Calls a recursive function
-		
+
 	}
 
 	//Gets a string and prints its subtree

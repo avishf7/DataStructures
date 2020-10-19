@@ -1,3 +1,6 @@
+//Avishay Farkash 205918790
+//Shai Axelrod 205544307
+
 #include <iostream>
 #include <list>
 #include <string>
@@ -37,7 +40,7 @@ int main()
 			cout << "enter the last message (with no space) "; cin >> val;
 			tl.printSubTree(title, val); cout << endl;  break;
 		case 'w':cout << "enter a string (with no space) "; cin >> val;
-			tl.searchAndPrint(val); cout << endl;  break;
+			if (!tl.searchAndPrint(val)) cout << "ERROR"; cout << endl;  break;
 		case 'e':cout << "bye "; break;
 		default: cout << "ERROR\n";  break;
 		}
