@@ -15,8 +15,7 @@ public:
 	//clean the list
 	void clear()
 	{
-		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
-			it->clear();
+		listOfTrees.clear();
 	}
 
 	~treeList() //destructor

@@ -99,6 +99,7 @@ public:
 
 	~Tree()//dtor
 	{
+		cout << "hi\n";
 		clear();
 	}
 
