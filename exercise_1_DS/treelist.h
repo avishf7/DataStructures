@@ -49,10 +49,10 @@ public:
 			if (flag = (*it).Search(discussion))
 			{
 				flag = true;
-				(*it).printMaslul(discussion);
 				if (it->getRootString() != "")
 					cout << endl;
 				(*it).printSubTree(discussion);
+				(*it).printMaslul(discussion);
 			}
 		}
 		return flag;
@@ -139,5 +139,4 @@ public:
 		}
 		return false;
 	}
-
 };
