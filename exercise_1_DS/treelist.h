@@ -28,8 +28,8 @@ public:
 	void addNewTree(string discussion)
 	{
 		Tree tree;
-		listOfTrees.push_back(tree);
-		listOfTrees.back().setroot(discussion);
+		listOfTrees.push_front(tree);
+		listOfTrees.front().setroot(discussion);
 	}
 
 	// Gets a Tree object 
@@ -119,6 +119,7 @@ public:
 		{
 			cout << "Tree #" << i++ << endl;
 			(*it).print();
+			cout << endl;
 		}
 	}
 
