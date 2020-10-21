@@ -7,6 +7,7 @@ class treeList
 private:
 
 	list<Tree> listOfTrees;
+	
 
 public:
 
