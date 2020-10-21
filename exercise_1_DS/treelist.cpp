@@ -12,7 +12,9 @@ void treeList::addNewTree(string discussion)
 
 void treeList::remove(Tree::Node* root)
 {
-	listOfTrees.remove_if([&](const Tree t) { return t.root == root; });
+	for (list<Tree>::iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+		if ((*it).root == root)
+			listOfTrees.erase(it);
 }
 
 bool treeList::searchAndPrint(string discussion)
