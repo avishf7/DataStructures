@@ -19,7 +19,7 @@ Tree::Node* Tree::Search(string discussion, Node* current)
 //Recursive function-Gets a string and returns a pointer to the father of the node that contains it
 Tree::Node* Tree::seasrchFather(string discussion, Node* current)
 {
-	for (list<Node*>::iterator  it = current->responses.begin(); it != current->responses.end(); it++)
+	for (list<Node*>::iterator it = current->responses.begin(); it != current->responses.end(); it++)
 	{
 		if (Node* find = seasrchFather(discussion, *it))
 			return find;
@@ -39,7 +39,7 @@ void Tree::print(Node* current, int space)
 
 	cout << current->content << endl;//Print the contents of the node
 
-	for (list<Node*>::iterator  it = current->responses.begin(); it != current->responses.end(); it++)//Print his sons
+	for (list<Node*>::iterator it = current->responses.begin(); it != current->responses.end(); it++)//Print his sons
 		print(*it, space + 1);
 }
 
@@ -47,13 +47,12 @@ void Tree::print(Node* current, int space)
 void Tree::printMaslul(string discussion, Node* current)
 {
 	if (current->content != discussion)
-		for (list<Node*>::iterator  it = current->responses.begin(); it != current->responses.end(); it++)//Find out where the string is and continue printing according to the route
+		for (list<Node*>::iterator it = current->responses.begin(); it != current->responses.end(); it++)//Find out where the string is and continue printing according to the route
 		{
 			if (Search(discussion, *it) != NULL)
 			{
 				printMaslul(discussion, *it);
-				if (current->content != root->content)
-					cout << "=>";
+				cout << "=>";
 				if (current->content != discussion)
 					cout << current->content;//print the current node
 				return;
