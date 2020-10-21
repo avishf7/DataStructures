@@ -30,6 +30,7 @@ bool treeList::searchAndPrint(string discussion)
 				cout << endl;
 			(*it).printSubTree(discussion);
 			(*it).printMaslul(discussion);
+			cout << endl;
 		}
 	}
 	return flag;
