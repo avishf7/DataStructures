@@ -1,9 +1,7 @@
 //Avishay Farkash 205918790
 //Shai Axelrod 205544307
 
-#include <iostream>
-#include <list>
-#include <string>
+
 #include "treelist.h"
 
 using namespace std;

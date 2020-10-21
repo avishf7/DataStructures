@@ -80,12 +80,6 @@ Tree::~Tree()//dtor
 }
 
 //Receives a string and returns a pointer to the node that contains it
-Tree::Node* Search(string discussion)
-{
-	return Search(discussion, root);//Calls a recursive function
-}
-
-//Receives a string and returns a pointer to the node that contains it
 Tree::Node* Tree::Search(string discussion)
 {
 	return Search(discussion, root);//Calls a recursive function
