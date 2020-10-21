@@ -167,4 +167,6 @@ public:
 		if (Node* rootToPrint = Search(discussion))
 			print(rootToPrint, 0);//Calls a recursive function
 	}
+
+	friend class treeList;
 };

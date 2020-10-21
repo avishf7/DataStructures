@@ -34,9 +34,9 @@ public:
 
 	// Gets a Tree object 
 	// and deletes it from the list of trees 
-	void remove(Tree tree)
+	void remove(Tree::Node * root)
 	{
-		listOfTrees.remove_if([&](const Tree t) { return t.getRootString() == tree.getRootString(); });;
+		listOfTrees.remove_if([&](const Tree t) { return t.root == root; });
 	}
 
 	// Gets a string and if it appears in the tree from the list of trees,
@@ -78,10 +78,17 @@ public:
 	// and removes the second string in the fit tree
 	bool delResponse(string title, string son)
 	{
+
 		for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		{
 			if ((*it).getRootString() == title)
-				return ((*it).remove(son));
+			{
+				if (title != son)
+					return ((*it).remove(son));
+			
+				remove(it->root);
+				return true;
+			}
 		}
 
 		return false;
