@@ -52,10 +52,10 @@ void Tree::printMaslul(string discussion, Node* current)
 			if (Search(discussion, *it) != NULL)
 			{
 				printMaslul(discussion, *it);
-				if (current->content != discussion)
-					cout << current->content;//print the current node
 				if (current->content != root->content)
 					cout << "=>";
+				if (current->content != discussion)
+					cout << current->content;//print the current node
 				return;
 			}
 		}
@@ -135,8 +135,6 @@ void Tree::printMaslul(string discussion)
 {
 	if (Search(discussion))
 	{
-		if (discussion != root->content)
-			cout << "<=";
 		printMaslul(discussion, root);//Calls a recursive function
 	}
 }
@@ -147,4 +145,5 @@ void Tree::printSubTree(string discussion)
 	if (Node* rootToPrint = Search(discussion))
 		print(rootToPrint, 0);//Calls a recursive function
 }
+
 

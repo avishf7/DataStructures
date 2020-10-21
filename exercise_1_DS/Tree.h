@@ -28,9 +28,6 @@ private:
 	//Recursive function-Receives a string and returns a pointer to the node that contains it
 	Node* Search(string discussion, Node* current);
 	
-	//Recursive function-Gets a string and returns a pointer to the father of the node that contains it
-	Node* seasrchFather(string discussion, Node* current);
-	
 	//Recursive function-Prints the tree hierarchically
 	void print(Node* current, int space);
 	
@@ -59,6 +56,9 @@ public:
 	
 	//Prints the tree hierarchically
 	void print();
+
+	//Recursive function-Gets a string and returns a pointer to the father of the node that contains it
+	Node* seasrchFather(string discussion, Node* current);
 	
 	//Gets a stringand prints the route from the root to the node
 	void printMaslul(string discussion);

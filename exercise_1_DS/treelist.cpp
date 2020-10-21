@@ -82,7 +82,15 @@ void treeList::printSubTree(string title, string val)
 {
 	for (list<Tree>:: iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		if ((*it).getRootString() == title)
+		{
 			(*it).printSubTree(val);
+			Tree::Node* father= (*it).seasrchFather(val, (*it).root);
+			if (father)
+			{
+				cout << "=>" << father->content;
+			}
+			cout << endl;
+		}
 }
 
 void treeList::printAllTrees()
