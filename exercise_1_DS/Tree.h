@@ -18,7 +18,7 @@ private:
 		list<Node*>responses;//the responses
 		~Node()//detor-Deletes the entire subtree of this node
 		{
-			for (auto it = responses.begin(); it != responses.end(); it++)
+			for (list<Node*>::iterator it = responses.begin(); it != responses.end(); it++)
 				delete* it;
 		}
 	};
