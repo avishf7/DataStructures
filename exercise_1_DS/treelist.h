@@ -1,4 +1,7 @@
-#pragma once
+//Avishay Farkash 205918790
+//Shai Axelrod 205544307
+#ifndef TREELIST_H
+#define TREELIST_H
 
 #include "Tree.h"
 
@@ -55,3 +58,4 @@ public:
 	// and prints the arrival route and the sub-tree from the second string in this tree
 	bool printPartOfTree(string tree, string discussion);
 };
+#endif

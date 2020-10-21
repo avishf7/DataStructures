@@ -1,3 +1,5 @@
+//Avishay Farkash 205918790
+//Shai Axelrod 205544307
 #ifndef TREE_H
 #define TREE_H
 #include <string>
@@ -63,5 +65,6 @@ public:
 	//Gets a string and prints its subtree
 	void printSubTree(string discussion);
 	
+	friend class treeList;
 };
 #endif

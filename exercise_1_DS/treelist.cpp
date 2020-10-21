@@ -1,3 +1,5 @@
+//Avishay Farkash 205918790
+//Shai Axelrod 205544307
 #include "treelist.h"
 
 void treeList::addNewTree(string discussion)

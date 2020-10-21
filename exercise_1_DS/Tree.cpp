@@ -1,3 +1,5 @@
+//Avishay Farkash 205918790
+//Shai Axelrod 205544307
 #include "Tree.h"
 
 //Recursive function-Receives a string and returns a pointer to the node that contains it
@@ -84,7 +86,7 @@ Tree::Node* Search(string discussion)
 }
 
 //Receives a string and returns a pointer to the node that contains it
-Tree::Node* Tree::earch(string discussion)
+Tree::Node* Tree::Search(string discussion)
 {
 	return Search(discussion, root);//Calls a recursive function
 }
