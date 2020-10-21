@@ -48,9 +48,11 @@ bool treeList::delResponse(string title, string son)
 	{
 		if ((*it).getRootString() == title)
 		{
-			if (title != son)                 // if the node we want to delete is a root
-				return ((*it).remove(son));   // remove the tree from the tree list
+			if (title != son)                 
+				return ((*it).remove(son));   
 
+			// if the node we want to delete is a root
+			// remove the tree from the tree list
 			remove(it->root);
 			return true;
 		}
