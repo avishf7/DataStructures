@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="treelist.cpp" />
   </ItemGroup>
   <ItemGroup>

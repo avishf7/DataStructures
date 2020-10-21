@@ -58,4 +58,5 @@ public:
 	// and prints the arrival route and the sub-tree from the second string in this tree
 	bool printPartOfTree(string tree, string discussion);
 };
+
 #endif

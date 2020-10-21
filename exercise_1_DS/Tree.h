@@ -2,6 +2,7 @@
 //Shai Axelrod 205544307
 #ifndef TREE_H
 #define TREE_H
+
 #include <string>
 #include <iostream>
 #include <list>
@@ -67,4 +68,5 @@ public:
 	
 	friend class treeList;
 };
+
 #endif
