@@ -19,7 +19,7 @@ bool treeList::searchAndPrint(string discussion)
 {
 	bool flag = false; //flag to check if exists one appearance of the discussion
 
-	for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+	for (list<Tree>:: iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 	{
 		if ((*it).Search(discussion))
 		{
@@ -35,7 +35,7 @@ bool treeList::searchAndPrint(string discussion)
 
 bool treeList::addResponse(string title, string father, string son)
 {
-	for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+	for (list<Tree>:: iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 	{
 		if ((*it).getRootString() == title)
 			return ((*it).add(father, son));
@@ -46,7 +46,7 @@ bool treeList::addResponse(string title, string father, string son)
 
 bool treeList::delResponse(string title, string son)
 {
-	for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+	for (list<Tree>:: iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 	{
 		if ((*it).getRootString() == title)
 		{
@@ -65,7 +65,7 @@ bool treeList::delResponse(string title, string son)
 
 bool treeList::printTree(string s)
 {
-	for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+	for (list<Tree>:: iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 	{
 		if ((*it).getRootString() == s)
 		{
@@ -78,7 +78,7 @@ bool treeList::printTree(string s)
 
 void treeList::printSubTree(string title, string val)
 {
-	for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+	for (list<Tree>:: iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 		if ((*it).getRootString() == title)
 			(*it).printSubTree(val);
 }
@@ -86,7 +86,7 @@ void treeList::printSubTree(string title, string val)
 void treeList::printAllTrees()
 {
 	int i = 1;
-	for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+	for (list<Tree>:: iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 	{
 		cout << "Tree #" << i++ << endl;
 		(*it).print();
@@ -96,7 +96,7 @@ void treeList::printAllTrees()
 
 bool treeList::printPartOfTree(string tree, string discussion)
 {
-	for (auto it = listOfTrees.begin(); it != listOfTrees.end(); it++)
+	for (list<Tree>:: iterator it = listOfTrees.begin(); it != listOfTrees.end(); it++)
 	{
 		if ((*it).getRootString() == tree)
 			if ((*it).Search(discussion))
