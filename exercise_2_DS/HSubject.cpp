@@ -1,7 +1,6 @@
-#pragma once
-
 #include "HSubject.h"
 
+using namespace std;
 
 
 int HSubject::h1(string key)

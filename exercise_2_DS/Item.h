@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ITEM_H
+#define ITEM_H
 
 enum state { empty, full, deleted };
 template <class T, class K>
@@ -12,3 +13,4 @@ public:
 	Item(T d, K k, state f) { data = d; key = k; flag = f; }
 };
 
+#endif

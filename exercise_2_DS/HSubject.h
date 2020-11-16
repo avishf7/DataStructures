@@ -1,23 +1,27 @@
-#pragma once
+#ifndef HSUBJECT_H
+#define HSUBJECT_H
+
 #include <list>
 #include<string>
 #include "MyHashTable.h"
 
-using namespace std;
 
-class HSubject : public MyHashTable<list<string>, string>
+
+class HSubject : public MyHashTable < std::list<std::string>, std::string >
 {
-	int h1(string key);
-	int h2(string key);
+	int h1(std::string key);
+	int h2(std::string key);
 public:
 
 
 	HSubject(int size) : MyHashTable(size) {}
-	void printS(string subject);
-	void addSubjectAndTitle(string subject, string title);
-	void printN(string subject, int n);
+	void printS(std::string subject);
+	void addSubjectAndTitle(std::string subject, std::string title);
+	void printN(std::string subject, int n);
 	void startNewTable();
 	void print();
 
 };
+
+#endif
 

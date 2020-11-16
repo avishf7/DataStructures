@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{30bf2b4e-3a22-4990-9da1-eca3553cc1c2}</ProjectGuid>
+    <ProjectGuid>{ac8f6ddd-4ace-40fc-b8be-1e89d7bb0117}</ProjectGuid>
     <RootNamespace>exercise2DS</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -139,14 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HSubject.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="HSubject.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="MyHashTable.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="HSubject.cpp" />
-    <ClCompile Include="MyHashTable.cpp" />
-    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

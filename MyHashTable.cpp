@@ -7,13 +7,13 @@
 using namespace std;
 
 template<class T, class K>
-int MyHashTable<T, K>::hash(K key, int i)
+int hash(K key, int i)
 {
 	return (h1(key) + i * h2(key)) % size;
 }
 
 template<class T, class K>
-int MyHashTable<T, K>::search(K key)
+int search(K key)
 {
 	int h;
 	for (int i = 0; i < size; i++)
@@ -25,7 +25,7 @@ int MyHashTable<T, K>::search(K key)
 }
 
 template<class T, class K>
-void MyHashTable<T, K>::add(T data, K key)
+void add(T data, K key)
 {
 	int h;
 	for (int i = 0; i < size; i++)
@@ -46,7 +46,7 @@ void MyHashTable<T, K>::add(T data, K key)
 }
 
 template<class T, class K>
-void MyHashTable<T, K>::remove(K key)
+void remove(K key)
 {
 	int i = search(key);
 	if (i != -1)
@@ -57,7 +57,7 @@ void MyHashTable<T, K>::remove(K key)
 }
 
 template<class T, class K>
-void MyHashTable<T, K>::update(T data, K key)
+void update(T data, K key)
 {
 	int i = search(key);
 	if (i != -1)
@@ -67,7 +67,7 @@ void MyHashTable<T, K>::update(T data, K key)
 }
 
 template<class T, class K>
-void MyHashTable<T, K>::print()
+void print()
 {
 	for (int i = 0; i < size; i++)
 		if (table[i]->flag == full)
@@ -78,7 +78,7 @@ void MyHashTable<T, K>::print()
 }
 
 template<class T, class K>
-MyHashTable<T, K>::MyHashTable(int size)
+MyHashTable(int size)
 {
 	int j;
 	bool isDiv = false, isFound = false;
