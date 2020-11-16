@@ -7,5 +7,6 @@ using namespace std;
 
 class HSubject : public MyHashTable<list<string>,string>
 {
+
 };
 

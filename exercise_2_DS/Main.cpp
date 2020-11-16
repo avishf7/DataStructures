@@ -1,4 +1,5 @@
 #include<iostream>
+#include"HSubject.h"
 
 using namespace std;
 
