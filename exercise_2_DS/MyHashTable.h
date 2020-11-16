@@ -45,7 +45,7 @@ MyHashTable<T, K>::MyHashTable(int size)
 	int j;
 	bool isDiv = false, isFound = false;
 
-	for (j = size; !isFound; isFound = !isDiv, j++)
+	for (j = size; !isFound; isFound = !isDiv, isDiv = false, j++)
 		for (int i = 3; !isDiv && i <= sqrt(size); i += 2)
 			isDiv = (j % i == 0);
 
