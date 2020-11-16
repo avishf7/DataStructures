@@ -46,12 +46,13 @@ MyHashTable<T, K>::MyHashTable(int size)
 	bool isDiv = false, isFound = false;
 
 	for (j = size; !isFound; isFound = !isDiv, isDiv = false, j++)
-		for (int i = 3; !isDiv && i <= sqrt(size); i += 2)
-			isDiv = (j % i == 0);
+		if (!(isDiv = !(j % 2 != 0)))
+			for (int i = 3; !isDiv && i <= sqrt(size); i += 2)
+				isDiv = (j % i == 0);
 
 	table = new Item<T, K> * [--j];
 	this->size = j;
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < j; i++)
 		table[i] = new Item<T, K>();
 }
 
