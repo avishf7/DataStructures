@@ -1,4 +1,7 @@
-#pragma once
+
+
+
+
 
 #include "HSubject.h"
 
@@ -59,7 +62,7 @@ void HSubject::printN(string subject, int n)
 void HSubject::startNewTable()
 {
 	for (int i = 0; i < size; i++)
-		table[i]->flag = state::empty;
+		table[i]->flag =state::empty;
 }
 
 void HSubject::print()
@@ -72,5 +75,4 @@ void HSubject::print()
 		}
 
 }
-
 

@@ -1,4 +1,4 @@
-#pragma once
+
 
 #include<iostream>
 #include "HSubject.h"
@@ -47,3 +47,4 @@ int main()
 	} while (ch != 'e');
 	return 0;
 }
+
