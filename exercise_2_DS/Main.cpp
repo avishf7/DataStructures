@@ -1,5 +1,7 @@
-#include<iostream>
+#pragma once
 
+#include<iostream>
+#include "HSubject.h"
 using namespace std;
 
 

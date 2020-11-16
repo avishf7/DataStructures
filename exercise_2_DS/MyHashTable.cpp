@@ -1,3 +1,5 @@
+#pragma once
+
 #include "MyHashTable.h"
 #include <cmath>
 #include <iostream>
@@ -44,7 +46,7 @@ void MyHashTable<T, K>::add(T data, K key)
 }
 
 template<class T, class K>
-void MyHashTable<T, K>::remove(T data, K key)
+void MyHashTable<T, K>::remove(K key)
 {
 	int i = search(key);
 	if (i != -1)
@@ -87,4 +89,6 @@ MyHashTable<T, K>::MyHashTable(int size)
 
 	table = new Item<T, K> * [--j];
 	this->size = j;
+	for (int i = 0; i < size; i++)
+		table[i] = new Item<T, K>();
 }
