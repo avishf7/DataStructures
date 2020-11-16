@@ -89,6 +89,6 @@ MyHashTable(int size)
 
 	table = new Item<T, K> * [--j];
 	this->size = j;
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < this->size; i++)
 		table[i] = new Item<T, K>();
 }
