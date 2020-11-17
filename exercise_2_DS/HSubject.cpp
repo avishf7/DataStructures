@@ -7,7 +7,7 @@ int HSubject::h1(string key)
 {
 	int sum=0;
 	for (int i = 0; i < (int)key.length(); i++)
-		sum += key[i];
+		sum += key[i] * pow(128,i);
 	return sum % size;
 }
 
