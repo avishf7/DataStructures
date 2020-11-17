@@ -53,7 +53,7 @@ MyHashTable<T, K>::MyHashTable(int size)
 	table = new Item<T, K> * [--j];
 	this->size = j;
 	for (int i = 0; i < j; i++)
-		table[i] = new Item<T, K>();
+		table[i] = (new Item<T, K>()->flag = state::empty);
 }
 
 template<class T, class K>
