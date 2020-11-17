@@ -5,9 +5,9 @@ using namespace std;
 
 int HSubject::h1(string key)
 {
-	int sum=0;
-	for (int i = 0; i < (int)key.length(); i++)
-		sum += key[i];
+	int sum = 0;
+	for (int i = 0; i < key.length(); i++)
+		sum = (sum += (int)(key[i] * ((unsigned int)pow(128, i) % size))) % size;
 	return sum % size;
 }
 
@@ -15,13 +15,13 @@ int HSubject::h2(string key)
 {
 	int sum = 0;
 	for (int i = 0; i < (int)key.length(); i++)
-		sum += key[i];
-	return 1+((sum % (size-1))% size);
+		sum = (sum += (int)(key[i] * ((unsigned int)pow(128, i) % (size - 1)))) % (size -1);
+	return 1 + (sum % (size - 1));
 }
 
 void HSubject::printS(string subject)
 {
-	int index=search(subject);
+	int index = search(subject);
 	if (index != -1)
 	{
 		for (list<string>::iterator it = table[index]->data.begin(); it != table[index]->data.end(); it++)
@@ -33,7 +33,7 @@ void HSubject::printS(string subject)
 void HSubject::addSubjectAndTitle(string subject, string title)
 {
 	int index = search(subject);
-	if (index !=-1)
+	if (index != -1)
 	{
 		table[index]->data.push_front(title);
 		return;
@@ -52,7 +52,7 @@ void HSubject::printN(string subject, int n)
 		for (list<string>::iterator it = table[index]->data.begin(); it != table[index]->data.end() && i < n; it++, i++)
 			cout << *it << " ";
 	}
-	
+
 }
 
 void HSubject::startNewTable()

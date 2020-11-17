@@ -93,12 +93,7 @@ void MyHashTable<T, K>::add(T data, K key)
 {
 	int h;
 	for (int i = 0; i < size; i++)
-		if (!table[h = hash(key, i)]->flag)
-		{
-			table[h] = new Item<T, K>(data, key, full);
-			return;
-		}
-		else if (table[h]->flag == deleted)
+		if (!(table[h = hash(key, i)]->flag) || table[h]->flag == deleted)
 		{
 			table[h]->data = data;
 			table[h]->key = key;
@@ -113,13 +108,11 @@ template<class T, class K>
 int MyHashTable<T, K>::search(K key)
 {
 	int h;
-	for (int i = 0; i < size; i++) {
-		h = hash(key, i);
-		if (!table[h]->flag)
+	for (int i = 0; i < size; i++)
+		if (!(table[h = hash(key, i)]->flag))
 			return -1;
 		else if (table[h]->flag == full)
 			return i;
-	}
 	return -1;
 }
 
