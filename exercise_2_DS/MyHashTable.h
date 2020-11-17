@@ -112,7 +112,7 @@ int MyHashTable<T, K>::search(K key)
 		if (!(table[h = hash(key, i)]->flag))
 			return -1;
 		else if (table[h]->flag == full)
-			return i;
+			return h;
 	return -1;
 }
 

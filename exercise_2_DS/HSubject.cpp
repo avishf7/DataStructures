@@ -7,7 +7,7 @@ int HSubject::h1(string key)
 {
 	unsigned int sum = 0;
 	for (int i = 0; i < key.length(); i++)
-		sum += (key[i] * (unsigned int)pow(128, i)) % size;
+		sum=(sum += key[i] * (unsigned int)pow(128, i)) % size;
 	return sum % size;
 }
 
@@ -15,7 +15,7 @@ int HSubject::h2(string key)
 {
 	unsigned int sum = 0;
 	for (int i = 0; i < (int)key.length(); i++)
-		sum += (key[i] * (unsigned int)pow(128, i)) % (size - 1);
+		sum = (sum += key[i] * (unsigned int)pow(128, i)) % (size - 1);
 	return 1 + (sum % (size - 1));
 }
 
