@@ -16,7 +16,7 @@ int HSubject::h2(string key)
 	int sum = 0;
 	for (int i = 0; i < (int)key.length(); i++)
 		sum += key[i];
-	return 1+(sum % 7);
+	return 1+((sum % (size-1))% size);
 }
 
 void HSubject::printS(string subject)

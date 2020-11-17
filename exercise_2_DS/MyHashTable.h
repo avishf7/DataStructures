@@ -113,11 +113,13 @@ template<class T, class K>
 int MyHashTable<T, K>::search(K key)
 {
 	int h;
-	for (int i = 0; i < size; i++)
-		if (!table[h = hash(key, i)]->flag)
+	for (int i = 0; i < size; i++) {
+		h = hash(key, i);
+		if (!table[h]->flag)
 			return -1;
 		else if (table[h]->flag == full)
 			return i;
+	}
 	return -1;
 }
 
