@@ -5,17 +5,17 @@ using namespace std;
 
 int HSubject::h1(string key)
 {
-	int sum = 0;
+	unsigned int sum = 0;
 	for (int i = 0; i < key.length(); i++)
-		sum = (sum += (int)(key[i] * ((unsigned int)pow(128, i) % size))) % size;
+		sum += key[i] * (unsigned int)pow(128, i);
 	return sum % size;
 }
 
 int HSubject::h2(string key)
 {
-	int sum = 0;
+	unsigned int sum = 0;
 	for (int i = 0; i < (int)key.length(); i++)
-		sum = (sum += (int)(key[i] * ((unsigned int)pow(128, i) % (size - 1)))) % (size -1);
+		sum += key[i] * (unsigned int)pow(128, i);
 	return 1 + (sum % (size - 1));
 }
 
