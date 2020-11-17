@@ -84,8 +84,7 @@ void MyHashTable<T, K>::remove(K key)
 	int i = search(key);
 	if (i != -1)
 		table[i]->flag = deleted;
-	else
-		std::cout << "ERROR\n";
+	
 }
 
 template<class T, class K>

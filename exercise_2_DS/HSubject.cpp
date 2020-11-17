@@ -28,6 +28,10 @@ void HSubject::printS(string subject)
 			cout << *it << " ";
 		cout << endl;
 	}
+	else
+	{
+		cout << "ERROR\n";
+	}
 }
 
 void HSubject::addSubjectAndTitle(string subject, string title)
@@ -51,14 +55,18 @@ void HSubject::printN(string subject, int n)
 		int i = 0;
 		for (list<string>::iterator it = table[index]->data.begin(); it != table[index]->data.end() && i < n; it++, i++)
 			cout << *it << " ";
+		cout << endl;
 	}
-
+	else
+	{
+		cout << "ERROR\n";
+	}
 }
 
 void HSubject::startNewTable()
 {
 	for (int i = 0; i < size; i++)
-		table[i]->flag = state::empty;
+		table[i]->flag = empty;
 }
 
 void HSubject::print()
