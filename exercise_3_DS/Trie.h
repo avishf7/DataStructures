@@ -3,6 +3,7 @@
 #ifndef TRIE_H
 #define TRIE_H
 #include <string>
+#include <iostream>
 using namespace std;
 
 class Trie
@@ -28,12 +29,12 @@ public:
 	void Insert(string str);
 	bool Delete(string str);
 	TrieNode* Search(string str);
-	void PrintAllWordsFromPrefix(TrieNode*);
+	bool PrintAllWordsFromPrefix(string str);
 private:
-	TrieNode* search(string str, TrieNode* node);
-	bool insert(string str, TrieNode* node);
-	
-
+	TrieNode* Search(string str, TrieNode* node);
+	void insert(string str, TrieNode* node);
+	void PrintAllWordsFromPrefix(string str, TrieNode* node);
+	TrieNode* SearchPrefix(string str, TrieNode* node);
 };
 
 #endif

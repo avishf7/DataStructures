@@ -8,32 +8,56 @@ void Trie::Insert(string str)
 
 bool Trie::Delete(string str)
 {
-	TrieNode* last;
+	TrieNode* last = Search(str);
 
-	if (!(last = Search(str)))
+	if (!last)
 		return false;
 
 	last->isEndWord = false;
 
-	for (auto i = last; i != NULL, i->count == 0;)
-		{
-			i->father->children[str[str.length() - 1]] = NULL;
-			i->father->count--;
-			last = i;
-			i = i->father;
-			delete last;
-			str = str.substr(0, str.length() - 1);
-		}
+	for (auto i = last; i->father != NULL && i->count == 0;)
+	{
+		i->father->children[str[str.length() - 1]-97] = NULL;
+		i->father->count--;
+		last = i;
+		i = i->father;
+		delete last;
+		str = str.substr(0, str.length() - 1);
+	}
 
 	return true;
 }
 
 Trie::TrieNode* Trie::Search(string str)
 {
-	return search(str, root);
+	return Search(str, root);
 }
 
-Trie::TrieNode* Trie::search(string str, TrieNode* node)
+bool Trie::PrintAllWordsFromPrefix(string str)
+{
+	if (!SearchPrefix(str,root))
+		return false;
+	else
+		PrintAllWordsFromPrefix(str, SearchPrefix(str, root));
+	return true;
+
+
+
+}
+
+Trie::TrieNode* Trie::SearchPrefix(string str, TrieNode* node)
+{
+	if (str.length() == 0)
+		return node;
+
+	char ch = str[0];
+	if (node->children[ch - 97] == NULL)
+		return	NULL;
+	return SearchPrefix(str.substr(1, str.length() - 1), node->children[ch - 97]);
+}
+
+
+Trie::TrieNode* Trie::Search(string str, TrieNode* node)
 {
 	if (str.length() == 0)
 		if (node->isEndWord == true)
@@ -43,7 +67,7 @@ Trie::TrieNode* Trie::search(string str, TrieNode* node)
 	char ch = str[0];
 	if (node->children[ch - 97] == NULL)
 		return	NULL;
-	search(str.substr(1, str.length() - 1), node->children[ch - 97]);
+	return Search(str.substr(1, str.length() - 1), node->children[ch - 97]);
 }
 
 void Trie::insert(string str, TrieNode* node)
@@ -65,4 +89,19 @@ void Trie::insert(string str, TrieNode* node)
 
 
 	insert(str.substr(1, str.length() - 1), node->children[ch - 97]);
+}
+
+void Trie::PrintAllWordsFromPrefix(string str, TrieNode* node)
+{
+	if (node->isEndWord)
+		cout << str << endl;
+	for (int i = 0; i < 26; i++)
+	{
+		if (node->children[i])
+		{
+			string newstr = str + (char)(i + 97);
+			PrintAllWordsFromPrefix(newstr, node->children[i]);
+		}
+	}
+
 }
