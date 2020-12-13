@@ -28,6 +28,24 @@ bool Trie::Delete(string str)
 	return true;
 }
 
+Trie::TrieNode* Trie::Search(string str)
+{
+	return search(str, root);
+}
+
+Trie::TrieNode* Trie::search(string str, TrieNode* node)
+{
+	if (str.length() == 0)
+		if (node->isEndWord == true)
+			return node;
+		else
+			return	NULL;
+	char ch = str[0];
+	if (node->children[ch - 97] == NULL)
+		return	NULL;
+	search(str.substr(1, str.length() - 1), node->children[ch - 97]);
+}
+
 void Trie::insert(string str, TrieNode* node)
 {
 	if (str.length() == 0)

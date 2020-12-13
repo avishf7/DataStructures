@@ -30,9 +30,9 @@ public:
 	TrieNode* Search(string str);
 	void PrintAllWordsFromPrefix(TrieNode*);
 private:
-	bool search(string str, TrieNode* node);
-	void insert(string str, TrieNode* node);
-	void search(string str, TrieNode* node);
+	TrieNode* search(string str, TrieNode* node);
+	bool insert(string str, TrieNode* node);
+	
 
 };
 
