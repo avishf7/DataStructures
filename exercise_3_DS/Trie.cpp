@@ -1,3 +1,5 @@
+//Avishay Farkash 205918790
+//Shai Axelrod 205544307
 #include "Trie.h"
 #include <iostream>
 using namespace std;
@@ -74,19 +76,20 @@ Trie::TrieNode* Trie::findPrefix(string str, TrieNode* node)
 bool Trie::PrintAllWordsFromPrefix(string str)
 {
 	TrieNode* node;
-	if (!(node = findPrefix(str, root)))
+	if (!(node = findPrefix(str, root)))//If there is no such string in the tree
 		return false;
-	else
+	else//Call the recursive function that will do the printing
 		PrintAllWordsFromPrefix(str, node);
 	return true;
 }
+
 void Trie::PrintAllWordsFromPrefix(string str, TrieNode* node)
 {
-	if (node->isEndWord)
+	if (node->isEndWord)//If the string is a word in the tree
 		cout << str << endl;
-	for (int i = 0; i < 26; i++)
+	for (int i = 0; i < 26; i++)//For each son - send the string with the appropriate letter
 	{
-		if (node->children[i])
+		if (node->children[i])//if this son isnt null
 		{
 			string newstr = str + (char)(i + 97);
 			PrintAllWordsFromPrefix(newstr, node->children[i]);
@@ -97,20 +100,21 @@ void Trie::PrintAllWordsFromPrefix(string str, TrieNode* node)
 
 bool Trie::Search(string str)
 {
-	if (!find(str, root))
+	if (!find(str, root))//if "find" returned null-There is no such string in the tree
 		return false;
 	return true;
 }
 
 Trie::TrieNode* Trie::find(string str, TrieNode* node)
 {
-	if (str.length() == 0)
-		if (node->isEndWord == true)
+	if (str.length() == 0)//If you have reached the end of the string
+		if (node->isEndWord == true)//If it's a word in the tree
 			return node;
-		else
+		else//If it isnt a word in the tree
 			return	NULL;
+	//If you have not reached the end of the word - continue to row in the direction of the trajectory of the string recursively
 	char ch = str[0];
-	if (node->children[ch - 97] == NULL)
+	if (node->children[ch - 97] == NULL)//If the continuation of the string is not in the tree
 		return	NULL;
 	return find(str.substr(1, str.length() - 1), node->children[ch - 97]);
 }
