@@ -6,16 +6,18 @@
 #include <iostream>
 using namespace std;
 
+//Word management tree
 class Trie
 {
 protected:
+	//node in trie
 	class TrieNode
 	{
 	public:
 		bool isEndWord = false;
 		TrieNode* children[26] = { NULL };
 		TrieNode* father;
-		int count = 0;
+		int count = 0;// number of children that not NULL
 
 		TrieNode(TrieNode* father = NULL) :father(father) {}
 	};
@@ -24,17 +26,17 @@ protected:
 
 public:
 
-
-
 	void Insert(string str);
 	bool Delete(string str);
-	bool Search(string str);
 	
-	bool PrintAllWordsFromPrefix(string str);
+	bool Search(string str);//shai
+	bool PrintAllWordsFromPrefix(string str);//shai
+
 private:
-	TrieNode* find(string str, TrieNode* node);
+
+	TrieNode* find(string str, TrieNode* node);//shai
 	void insert(string str, TrieNode* node);
-	void PrintAllWordsFromPrefix(string str, TrieNode* node);
+	void PrintAllWordsFromPrefix(string str, TrieNode* node);//shai
 	TrieNode* findPrefix(string str, TrieNode* node);
 	
 };

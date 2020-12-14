@@ -8,6 +8,27 @@ void Trie::Insert(string str)
 
 }
 
+void Trie::insert(string str, TrieNode* node)
+{
+	if (str.length() == 0)
+		return;
+
+	char ch = str[0];
+
+
+	if (node->children[ch - 97] == NULL)
+	{
+		node->children[ch - 97] = new TrieNode(node);
+		node->count++;
+	}
+
+	if (str.length() == 1)
+		node->children[ch - 97]->isEndWord = true;
+
+
+	insert(str.substr(1, str.length() - 1), node->children[ch - 97]);
+}
+
 bool Trie::Delete(string str)
 {
 	TrieNode* last = find(str,root);
@@ -30,27 +51,7 @@ bool Trie::Delete(string str)
 	return true;
 }
 
-bool Trie::Search(string str)
-{
-	if (!find(str, root))
-		return false;
-	return true;
-}
 
-
-
-bool Trie::PrintAllWordsFromPrefix(string str)
-{
-	TrieNode* node;
-	if (!(node = findPrefix(str, root)))
-		return false;
-	else
-		PrintAllWordsFromPrefix(str, node);
-	return true;
-
-
-
-}
 
 Trie::TrieNode* Trie::findPrefix(string str, TrieNode* node)
 {
@@ -63,41 +64,15 @@ Trie::TrieNode* Trie::findPrefix(string str, TrieNode* node)
 	return findPrefix(str.substr(1, str.length() - 1), node->children[ch - 97]);
 }
 
-
-Trie::TrieNode* Trie::find(string str, TrieNode* node)
+bool Trie::PrintAllWordsFromPrefix(string str)
 {
-	if (str.length() == 0)
-		if (node->isEndWord == true)
-			return node;
-		else
-			return	NULL;
-	char ch = str[0];
-	if (node->children[ch - 97] == NULL)
-		return	NULL;
-	return find(str.substr(1, str.length() - 1), node->children[ch - 97]);
+	TrieNode* node;
+	if (!(node = findPrefix(str, root)))
+		return false;
+	else
+		PrintAllWordsFromPrefix(str, node);
+	return true;
 }
-
-void Trie::insert(string str, TrieNode* node)
-{
-	if (str.length() == 0)
-		return;
-
-	char ch = str[0];
-
-
-	if (node->children[ch - 97] == NULL)
-	{
-		node->children[ch - 97] = new TrieNode(node);
-		node->count++;
-	}
-
-	if (str.length() == 1)
-		node->children[ch - 97]->isEndWord = true;
-
-
-	insert(str.substr(1, str.length() - 1), node->children[ch - 97]);
-}
-
 void Trie::PrintAllWordsFromPrefix(string str, TrieNode* node)
 {
 	if (node->isEndWord)
@@ -112,3 +87,27 @@ void Trie::PrintAllWordsFromPrefix(string str, TrieNode* node)
 	}
 
 }
+
+bool Trie::Search(string str)
+{
+	if (!find(str, root))
+		return false;
+	return true;
+}
+
+Trie::TrieNode* Trie::find(string str, TrieNode* node)
+{
+	if (str.length() == 0)
+		if (node->isEndWord == true)
+			return node;
+		else
+			return	NULL;
+	char ch = str[0];
+	if (node->children[ch - 97] == NULL)
+		return	NULL;
+	return find(str.substr(1, str.length() - 1), node->children[ch - 97]);
+}
+
+
+
+
