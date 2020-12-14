@@ -17,7 +17,7 @@ bool Trie::Delete(string str)
 
 	last->isEndWord = false;
 
-	for (auto i = last; i->father != NULL && i->count == 0;)
+	for (TrieNode* i = last; i->father != NULL && i->count == 0;)
 	{
 		i->father->children[str[str.length() - 1] - 97] = NULL;
 		i->father->count--;
@@ -41,10 +41,11 @@ bool Trie::Search(string str)
 
 bool Trie::PrintAllWordsFromPrefix(string str)
 {
-	if (!findPrefix(str, root))
+	TrieNode* node;
+	if (!(node = findPrefix(str, root)))
 		return false;
 	else
-		PrintAllWordsFromPrefix(str, findPrefix(str, root));
+		PrintAllWordsFromPrefix(str, node);
 	return true;
 
 
