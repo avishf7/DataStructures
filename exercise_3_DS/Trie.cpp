@@ -1,4 +1,6 @@
 #include "Trie.h"
+#include <iostream>
+using namespace std;
 
 void Trie::Insert(string str)
 {
@@ -8,7 +10,7 @@ void Trie::Insert(string str)
 
 bool Trie::Delete(string str)
 {
-	TrieNode* last = Search(str);
+	TrieNode* last = find(str,root);
 
 	if (!last)
 		return false;
@@ -17,7 +19,7 @@ bool Trie::Delete(string str)
 
 	for (auto i = last; i->father != NULL && i->count == 0;)
 	{
-		i->father->children[str[str.length() - 1]-97] = NULL;
+		i->father->children[str[str.length() - 1] - 97] = NULL;
 		i->father->count--;
 		last = i;
 		i = i->father;
@@ -28,24 +30,28 @@ bool Trie::Delete(string str)
 	return true;
 }
 
-Trie::TrieNode* Trie::Search(string str)
+bool Trie::Search(string str)
 {
-	return Search(str, root);
+	if (!find(str, root))
+		return false;
+	return true;
 }
+
+
 
 bool Trie::PrintAllWordsFromPrefix(string str)
 {
-	if (!SearchPrefix(str,root))
+	if (!findPrefix(str, root))
 		return false;
 	else
-		PrintAllWordsFromPrefix(str, SearchPrefix(str, root));
+		PrintAllWordsFromPrefix(str, findPrefix(str, root));
 	return true;
 
 
 
 }
 
-Trie::TrieNode* Trie::SearchPrefix(string str, TrieNode* node)
+Trie::TrieNode* Trie::findPrefix(string str, TrieNode* node)
 {
 	if (str.length() == 0)
 		return node;
@@ -53,11 +59,11 @@ Trie::TrieNode* Trie::SearchPrefix(string str, TrieNode* node)
 	char ch = str[0];
 	if (node->children[ch - 97] == NULL)
 		return	NULL;
-	return SearchPrefix(str.substr(1, str.length() - 1), node->children[ch - 97]);
+	return findPrefix(str.substr(1, str.length() - 1), node->children[ch - 97]);
 }
 
 
-Trie::TrieNode* Trie::Search(string str, TrieNode* node)
+Trie::TrieNode* Trie::find(string str, TrieNode* node)
 {
 	if (str.length() == 0)
 		if (node->isEndWord == true)
@@ -67,7 +73,7 @@ Trie::TrieNode* Trie::Search(string str, TrieNode* node)
 	char ch = str[0];
 	if (node->children[ch - 97] == NULL)
 		return	NULL;
-	return Search(str.substr(1, str.length() - 1), node->children[ch - 97]);
+	return find(str.substr(1, str.length() - 1), node->children[ch - 97]);
 }
 
 void Trie::insert(string str, TrieNode* node)

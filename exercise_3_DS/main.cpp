@@ -1,7 +1,6 @@
-#include<iostream>
-using namespace std;
-#include <list>
-#include <string>
+
+
+
 #include "Trie.h"
 
 int main()

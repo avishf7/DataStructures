@@ -28,13 +28,15 @@ public:
 
 	void Insert(string str);
 	bool Delete(string str);
-	TrieNode* Search(string str);
+	bool Search(string str);
+	
 	bool PrintAllWordsFromPrefix(string str);
 private:
-	TrieNode* Search(string str, TrieNode* node);
+	TrieNode* find(string str, TrieNode* node);
 	void insert(string str, TrieNode* node);
 	void PrintAllWordsFromPrefix(string str, TrieNode* node);
-	TrieNode* SearchPrefix(string str, TrieNode* node);
+	TrieNode* findPrefix(string str, TrieNode* node);
+	
 };
 
 #endif
