@@ -16,15 +16,15 @@ class compareNode;
 
 class HuffmanTree
 {
-	int characters = 0;
-	string order;
-	string structure;
-	string encode;
+	string apearrStr;
+	string structTree;
+
 	friend class compareNode;
+
 	class HuffmanNode
 	{
 	public:
-		HuffmanNode(string str, int frequency) :str(str), frequency(frequency) {}
+		HuffmanNode(string str, int frequency) :str(str), frequency(frequency) ,left(NULL) ,right(NULL) {}
 		string str;
 		int frequency;
 		HuffmanNode* left;
@@ -32,13 +32,14 @@ class HuffmanTree
 
 	};
 	HuffmanNode* root;
-	HuffmanTree(string str);
+
 	int	countCharacters(string str);
-	HuffmanNode* buildTree(string str);
+	void buildTree(string str);
+	void orderAndStruct(HuffmanNode* current);
+	string encode(string str,string rout , HuffmanNode* current);
+	
 public:
 
-
-	//priority_queue<HuffmanNode*, vector<HuffmanNode*>, compareNode> pQueue;
 };
 
 class compareNode

@@ -1,49 +1,84 @@
-
+#include <list>
+#include <algorithm>
+#include <iostream>
 #include "huffman.h"
-
-HuffmanTree::HuffmanTree(string str)
-{
-	countCharacters(str);
-	root = buildTree(str);
-}
+using namespace std;
 
 int HuffmanTree::countCharacters(string str)
 {
-	characters = 0;
+	int characters = 0;
 	list<char> l1;
 	for (int i = 0; i < (int)str.length(); i++)
 	{
-		if (l1.end == find(l1.begin, l1.end, str[i]))
+		if (l1.end() ==  find(l1.begin(), l1.end(), str[i]))
 		{
 			l1.push_back(str[i]);
 			characters++;
 		}
 		
 	}
+	return characters;
 }
 
-HuffmanTree::HuffmanNode* HuffmanTree::buildTree(string str)
+void HuffmanTree::buildTree(string str)
 {
-	list<char> l1 = new list<char>();
-	for (int i = 0; i < str.length(); i++)
+	priority_queue<HuffmanTree::HuffmanNode*, vector<HuffmanTree::HuffmanNode*>, compareNode> pQueue;
+	
+	vector<char> l1;
+	for (int i = 0; i < (int)str.length(); i++)
 	{
-		if (l1.end == find(l1.begin, l1.end, str[i]))
+		if (l1.end() == find(l1.begin(), l1.end(), str[i]))
 		{
 			l1.push_back(str[i]);
 		}
 	}
-	priority_queue<HuffmanTree::HuffmanNode*, vector<HuffmanTree::HuffmanNode*>, compareNode> pQueue;
-	for each (char ch in l1)
+
+	string strTemp;
+	for (int i = 0; i < l1.size(); i++)
 	{
-		int count = 0;
-		for (int i = 0; i < str.length(); i++)
-		{
-			if (str[i] == ch)
-				count++;
-		}
-		
-		pQueue.push(HuffmanTree::HuffmanNode * (ch, count));
+		strTemp = l1[i];
+		pQueue.push(new HuffmanNode(strTemp, count(str.begin(), str.end(), l1[i])));
 	}
 
-	return null;
+	for (int i = 1; i < pQueue.size() - 1; i++)
+	{
+		HuffmanNode* x = pQueue.top();
+		pQueue.pop();
+		
+		HuffmanNode* y = pQueue.top();
+		pQueue.pop();
+	
+
+		HuffmanNode * z = new HuffmanNode(x->str + y->str, x->frequency + y->frequency);
+		z->left = x;
+		z->right = y;
+		pQueue.push(z);
+	}
+	root = pQueue.top();
+	
+}
+
+void HuffmanTree::orderAndStruct(HuffmanNode* current)
+{
+	if (current->left == NULL)
+	{
+		structTree += "1";
+		apearrStr += current->str;
+		return;
+	}
+
+	structTree += "0";
+	orderAndStruct(current->left);
+	orderAndStruct(current->right);
+}
+
+string HuffmanTree::encode(string str,  string rout,  HuffmanNode* current)
+{
+	if (current->str == str)
+		return rout;
+
+	if((current->left->str.find(str)!= string::npos))
+		return encode(str,rout + "0", current->left);
+	if ((current->right->str.find(str) != string::npos))
+		return encode(str, rout + "1", current->right);
 }
