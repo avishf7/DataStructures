@@ -13,7 +13,7 @@ int main()
 
 	string word;
 
-	HuffmanTree* t = new HuffmanTree();
+	HuffmanTree* t = new HuffmanTree("shai");
 	cout << "enter 1 to encode a text\n";
 	cout << "enter 2 to decode a text\n";
 	cout << "enter 3 to exit\n";
