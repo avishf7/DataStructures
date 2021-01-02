@@ -39,15 +39,16 @@ void HuffmanTree::buildTree(string str)
 		strTemp = l1[i];
 		pQueue.push(new HuffmanNode(strTemp, count(str.begin(), str.end(), l1[i])));
 	}
-
-	for (int i = 1; i < pQueue.size() - 1; i++)
+	int toLoop = pQueue.size() - 1;;
+	for (int i = 0; i < toLoop; i++)
 	{
 		HuffmanNode* x = pQueue.top();
 		pQueue.pop();
 		
 		HuffmanNode* y = pQueue.top();
 		pQueue.pop();
-	
+		if (y->frequency == x->frequency)
+			swap(x, y);
 
 		HuffmanNode * z = new HuffmanNode(x->str + y->str, x->frequency + y->frequency);
 		z->left = x;
@@ -81,4 +82,20 @@ string HuffmanTree::encode(string str,  string rout,  HuffmanNode* current)
 		return encode(str,rout + "0", current->left);
 	if ((current->right->str.find(str) != string::npos))
 		return encode(str, rout + "1", current->right);
+}
+
+void HuffmanTree::printEncode(string str)
+{
+	cout << countCharacters(str) << endl;
+	buildTree(str);
+	orderAndStruct(root);
+	cout << apearrStr << endl;
+	cout << structTree << endl;
+	for (int i = 0; i < (int)str.length(); i++)
+	{
+		string curremtChar; curremtChar+=str[i];
+		cout << encode(curremtChar, "", root);
+
+	}
+	cout << "\n";
 }

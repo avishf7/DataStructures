@@ -39,7 +39,7 @@ class HuffmanTree
 	string encode(string str,string rout , HuffmanNode* current);
 	
 public:
-
+	void printEncode(string str);
 };
 
 class compareNode
