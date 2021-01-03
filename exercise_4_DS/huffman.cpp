@@ -10,12 +10,12 @@ int HuffmanTree::countCharacters(string str)
 	list<char> l1;
 	for (int i = 0; i < (int)str.length(); i++)
 	{
-		if (l1.end() ==  find(l1.begin(), l1.end(), str[i]))
+		if (l1.end() == find(l1.begin(), l1.end(), str[i]))
 		{
 			l1.push_back(str[i]);
 			characters++;
 		}
-		
+
 	}
 	return characters;
 }
@@ -23,7 +23,7 @@ int HuffmanTree::countCharacters(string str)
 void HuffmanTree::buildTree(string str)
 {
 	priority_queue<HuffmanTree::HuffmanNode*, vector<HuffmanTree::HuffmanNode*>, compareNode> pQueue;
-	
+
 	vector<char> l1;
 	for (int i = 0; i < (int)str.length(); i++)
 	{
@@ -44,10 +44,10 @@ void HuffmanTree::buildTree(string str)
 	{
 		HuffmanNode* x = pQueue.top();
 		pQueue.pop();
-		
+
 		HuffmanNode* y = pQueue.top();
 		pQueue.pop();
-		
+
 		if (y->frequency == x->frequency)
 			swap(x, y);
 
@@ -57,7 +57,7 @@ void HuffmanTree::buildTree(string str)
 		pQueue.push(z);
 	}
 	root = pQueue.top();
-	
+
 }
 
 void HuffmanTree::orderAndStruct(HuffmanNode* current)
@@ -76,29 +76,29 @@ void HuffmanTree::orderAndStruct(HuffmanNode* current)
 
 
 
-string HuffmanTree::encode(string str,  string rout,  HuffmanNode* current)
+string HuffmanTree::encode(string str, string rout, HuffmanNode* current)
 {
 	if (current->str == str)
 		return rout;
 
-	if((current->left->str.find(str)!= string::npos))
-		return encode(str,rout + "0", current->left);
+	if ((current->left->str.find(str) != string::npos))
+		return encode(str, rout + "0", current->left);
 	if ((current->right->str.find(str) != string::npos))
 
 
-	return encode(str, rout + "1", current->right);
+		return encode(str, rout + "1", current->right);
 }
 
-string HuffmanTree::rebuildTree( HuffmanNode* curr)
+string HuffmanTree::rebuildTree(HuffmanNode* curr)
 {
 	if (structTree == "")
 	{
 		curr->str = apearrStr[0];
-		apearrStr.substr(1, apearrStr.size() - 1);
+		apearrStr = apearrStr.substr(1, apearrStr.size() - 1);
 		return curr->str;
 	}
 
-	if (structTree[0] == 0)
+	if (structTree[0] == '0')
 	{
 		curr->left = new HuffmanNode();
 		curr->right = new HuffmanNode();
@@ -107,11 +107,11 @@ string HuffmanTree::rebuildTree( HuffmanNode* curr)
 		curr->str += rebuildTree(curr->right);
 		return curr->str;
 	}
-	if (structTree[0] == 1)
+	if (structTree[0] == '1')
 	{
 		curr->str = apearrStr[0];
-		apearrStr.substr(1, apearrStr.size() - 1);
-		structTree.substr(1, structTree.size() - 1);
+		apearrStr = apearrStr.substr(1, apearrStr.size() - 1);
+		structTree = structTree.substr(1, structTree.size() - 1);
 		return curr->str;
 
 	}
@@ -120,7 +120,7 @@ string HuffmanTree::rebuildTree( HuffmanNode* curr)
 
 void HuffmanTree::printEncode(string str)
 {
-
+	cout << "The encoded string is:" << endl;
 	cout << countCharacters(str) << endl;
 	buildTree(str);
 	orderAndStruct(root);
@@ -128,13 +128,15 @@ void HuffmanTree::printEncode(string str)
 	cout << structTree << endl;
 	for (int i = 0; i < (int)str.length(); i++)
 	{
-		string curremtChar; curremtChar+=str[i];
+		string curremtChar; curremtChar += str[i];
 		cout << encode(curremtChar, "", root);
 
 	}
 	cout << "\n";
 
 	delete root;
+	this->apearrStr = "";
+	this->structTree = "";
 }
 
 void HuffmanTree::printDecode(string apearS, string orderT, string code)
@@ -146,18 +148,22 @@ void HuffmanTree::printDecode(string apearS, string orderT, string code)
 	rebuildTree(root);
 
 	HuffmanNode* curr = root;
-	for (int i = 0; i < code.size(); i++)
+	cout << "The decoded string is: ";
+	for (int i = 0; i < code.size()+1; i++)
 		if (curr->left == NULL)
 		{
 			cout << curr->str;
 			curr = root;
+			i--;
 		}
-		else if (code[i] == 0)
+		else if (code[i] == '0')
 			curr = curr->left;
 		else
 			curr = curr->right;
-
+	cout << endl;
 	delete root;
+	this->apearrStr = "";
+	this->structTree = "";
 }
 
 
