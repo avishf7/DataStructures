@@ -1,9 +1,12 @@
+//Avishay Farkash 205918790
+//Shai Axelrod 205544307
 #include <list>
 #include <algorithm>
 #include <iostream>
 #include "huffman.h"
 using namespace std;
 
+//The function receives a string and returns the number of different characters in it
 int HuffmanTree::countCharacters(string str)
 {
 	int characters = 0;
@@ -20,11 +23,12 @@ int HuffmanTree::countCharacters(string str)
 	return characters;
 }
 
+//The function gets a string and builds the Huffman tree for it
 void HuffmanTree::buildTree(string str)
 {
 	priority_queue<HuffmanTree::HuffmanNode*, vector<HuffmanTree::HuffmanNode*>, compareNode> pQueue;
 
-	vector<char> l1;
+	vector<char> l1;//find the different characters in the string
 	for (int i = 0; i < (int)str.length(); i++)
 	{
 		if (l1.end() == find(l1.begin(), l1.end(), str[i]))
@@ -32,13 +36,16 @@ void HuffmanTree::buildTree(string str)
 			l1.push_back(str[i]);
 		}
 	}
-
+	
+	//Find the frequency of each character and put all the characters in the queue
 	string strTemp;
 	for (int i = 0; i < l1.size(); i++)
 	{
 		strTemp = l1[i];
 		pQueue.push(new HuffmanNode(strTemp, count(str.begin(), str.end(), l1[i])));
 	}
+	
+	//The algorithm for building the Huffman tree
 	int toLoop = pQueue.size() - 1;;
 	for (int i = 0; i < toLoop; i++)
 	{
@@ -56,13 +63,14 @@ void HuffmanTree::buildTree(string str)
 		z->right = y;
 		pQueue.push(z);
 	}
+	
 	root = pQueue.top();
-
 }
-
+ 
+// A recursive function for finding the structure of the tree and the order of the leaves in the tree
 void HuffmanTree::orderAndStruct(HuffmanNode* current)
 {
-	if (current->left == NULL)
+	if (current->left == NULL)//if we got to the leaf
 	{
 		structTree += "1";
 		apearrStr += current->str;
@@ -75,17 +83,15 @@ void HuffmanTree::orderAndStruct(HuffmanNode* current)
 }
 
 
-
+// A recursive function that receives a char and encrypts it according to the Huffman tree
 string HuffmanTree::encode(string str, string rout, HuffmanNode* current)
 {
-	if (current->str == str)
+	if (current->str == str)//If you got to the wanted char
 		return rout;
 
-	if ((current->left->str.find(str) != string::npos))
+	if ((current->left->str.find(str) != string::npos))//Otherwise - continue on the route towards the char
 		return encode(str, rout + "0", current->left);
 	if ((current->right->str.find(str) != string::npos))
-
-
 		return encode(str, rout + "1", current->right);
 }
 
