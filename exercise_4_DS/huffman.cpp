@@ -73,6 +73,8 @@ void HuffmanTree::orderAndStruct(HuffmanNode* current)
 	orderAndStruct(current->right);
 }
 
+
+
 string HuffmanTree::encode(string str,  string rout,  HuffmanNode* current)
 {
 	if (current->str == str)
@@ -81,11 +83,43 @@ string HuffmanTree::encode(string str,  string rout,  HuffmanNode* current)
 	if((current->left->str.find(str)!= string::npos))
 		return encode(str,rout + "0", current->left);
 	if ((current->right->str.find(str) != string::npos))
-		return encode(str, rout + "1", current->right);
+
+
+	return encode(str, rout + "1", current->right);
 }
+
+string HuffmanTree::rebuildTree( HuffmanNode* curr)
+{
+	if (structTree == "")
+	{
+		curr->str = apearrStr[0];
+		apearrStr.substr(1, apearrStr.size() - 1);
+		return curr->str;
+	}
+
+	if (structTree[0] == 0)
+	{
+		curr->left = new HuffmanNode();
+		curr->right = new HuffmanNode();
+		structTree = structTree.substr(1, structTree.size() - 1);
+		curr->str += rebuildTree(curr->left);
+		curr->str += rebuildTree(curr->right);
+		return curr->str;
+	}
+	if (structTree[0] == 1)
+	{
+		curr->str = apearrStr[0];
+		apearrStr.substr(1, apearrStr.size() - 1);
+		structTree.substr(1, structTree.size() - 1);
+		return curr->str;
+
+	}
+}
+
 
 void HuffmanTree::printEncode(string str)
 {
+
 	cout << countCharacters(str) << endl;
 	buildTree(str);
 	orderAndStruct(root);
@@ -98,4 +132,29 @@ void HuffmanTree::printEncode(string str)
 
 	}
 	cout << "\n";
+
+	delete root;
+}
+
+void HuffmanTree::printDecode(string apearS, string orderT, string code)
+{
+	apearrStr = apearS;
+	structTree = orderT;
+
+	root = new HuffmanNode();
+	rebuildTree(root);
+
+	HuffmanNode* curr = root;
+	for (int i = 0; i < code.size(); i++)
+		if (curr->left == NULL)
+		{
+			cout << curr->str;
+			curr = root;
+		}
+		else if (code[i] == 0)
+			curr = curr->left;
+		else
+			curr = curr->right;
+
+	delete root;
 }
