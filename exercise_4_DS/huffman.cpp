@@ -47,10 +47,11 @@ void HuffmanTree::buildTree(string str)
 		
 		HuffmanNode* y = pQueue.top();
 		pQueue.pop();
+		
 		if (y->frequency == x->frequency)
 			swap(x, y);
 
-		HuffmanNode * z = new HuffmanNode(x->str + y->str, x->frequency + y->frequency);
+		HuffmanNode* z = new HuffmanNode(x->str + y->str, x->frequency + y->frequency);
 		z->left = x;
 		z->right = y;
 		pQueue.push(z);
@@ -99,3 +100,5 @@ void HuffmanTree::printEncode(string str)
 	}
 	cout << "\n";
 }
+
+

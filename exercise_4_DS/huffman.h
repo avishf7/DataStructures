@@ -37,6 +37,7 @@ class HuffmanTree
 	void buildTree(string str);
 	void orderAndStruct(HuffmanNode* current);
 	string encode(string str,string rout , HuffmanNode* current);
+	void re(string s,)
 	
 public:
 	void printEncode(string str);
