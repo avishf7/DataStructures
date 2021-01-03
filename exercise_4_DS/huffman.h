@@ -24,23 +24,28 @@ class HuffmanTree
 	class HuffmanNode
 	{
 	public:
-		HuffmanNode(string str, int frequency) :str(str), frequency(frequency) ,left(NULL) ,right(NULL) {}
+		HuffmanNode(string str = "", int frequency = 0) :str(str), frequency(frequency) ,left(NULL) ,right(NULL) {}
 		string str;
 		int frequency;
 		HuffmanNode* left;
 		HuffmanNode* right;
 
+		~HuffmanNode() { delete left; delete right; }
 	};
-	HuffmanNode* root;
+	HuffmanNode* root = NULL;
 
+	~HuffmanTree() { delete root; }
 	int	countCharacters(string str);
 	void buildTree(string str);
 	void orderAndStruct(HuffmanNode* current);
 	string encode(string str,string rout , HuffmanNode* current);
-	void re(string s,)
+
+	string rebuildTree( HuffmanNode* curr);
+	
 	
 public:
 	void printEncode(string str);
+	void printDecode(string apearS, string orderT, string code);
 };
 
 class compareNode
