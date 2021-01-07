@@ -4,7 +4,6 @@
 #include <queue>
 #include <list>
 #include <string>
-#include <cmath>
 #ifndef HUFFMAN_H
 #define HUFFMAN_H
 using namespace std;
