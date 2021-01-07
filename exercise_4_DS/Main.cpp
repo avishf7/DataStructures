@@ -31,14 +31,16 @@ int main()
 		switch (choice)
 		{
 		case 1:
-
+			//Input the text to encode:
 			cout << "enter the original text" << endl;
 			cin >> word;
 
+			//Prints the output - number of leaves, order of letters, tree structureand the encoded text
 			t->printEncode(word);
 
 			break;
 		case 2:
+			//Input the number of leaves, the  order of letters, tree structure and the encoded text:
 			cout << "enter n ";
 			cin >> n;
 			cout << "enter the letters ";
@@ -49,9 +51,8 @@ int main()
 			cin >> code;
 
 			t->printDecode(letters, order, code);
-			//input the number of leaves, the  order of letters, tree structure and the encoded text.
-			//build the Huffman Tree according to the tree strcture. put the letters in the leaves according to the given order. 
-			//Given the Huffman Tree and the encoded text, find the original text, and print it. 
+			
+			
 
 		}
 

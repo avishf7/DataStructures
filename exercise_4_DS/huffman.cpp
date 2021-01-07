@@ -97,6 +97,7 @@ string HuffmanTree::encode(string str, string rout, HuffmanNode* current)
 
 string HuffmanTree::rebuildTree(HuffmanNode* curr)
 {
+	//If there is no structure we are in the last leaf
 	if (structTree == "")
 	{
 		curr->str = apearrStr[0];
@@ -104,6 +105,7 @@ string HuffmanTree::rebuildTree(HuffmanNode* curr)
 		return curr->str;
 	}
 
+	//If the structure is zero and there is a left and right son, and then we will run the recursion on them
 	if (structTree[0] == '0')
 	{
 		curr->left = new HuffmanNode();
@@ -113,6 +115,8 @@ string HuffmanTree::rebuildTree(HuffmanNode* curr)
 		curr->str += rebuildTree(curr->right);
 		return curr->str;
 	}
+
+	//If the structure is zeroand there is a leftand right son, then we will run the recursion on them
 	if (structTree[0] == '1')
 	{
 		curr->str = apearrStr[0];
